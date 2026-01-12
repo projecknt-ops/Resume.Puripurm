@@ -30,6 +30,15 @@
                 <li><a href="#skills" class="nav-link">ทักษะ</a></li>
                 <li><a href="#contact" class="nav-link">ติดต่อ</a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="สลับโหมด">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <a href="resume.html" target="_blank" class="btn-download" title="ดู Resume">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Resume</span>
+                </a>
+            </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span></span>
                 <span></span>
@@ -89,43 +98,119 @@
                         ที่จำเป็นสำหรับการทำงานในอนาคต
                     </p>
                     <div class="about-info">
-                        <div class="info-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
+                        <div class="info-item info-expandable" onclick="this.classList.toggle('expanded')">
+                            <div class="info-icon-wrapper icon-edu">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="info-main">
                                 <span class="info-label">การศึกษา</span>
                                 <span class="info-value">RMUTL</span>
                             </div>
+                            <i class="fas fa-chevron-down info-expand-icon"></i>
+                            <!-- Education Timeline -->
+                            <div class="info-details">
+                                <div class="edu-timeline">
+                                    <div class="edu-item">
+                                        <div class="edu-dot current"></div>
+                                        <div class="edu-content">
+                                            <span class="edu-date">กำลังศึกษา</span>
+                                            <h4>มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h4>
+                                            <p>คณะวิศวกรรมศาสตร์ | วศ.บ.วิศวกรรมไฟฟ้า-โทรคมนาคม</p>
+                                        </div>
+                                    </div>
+                                    <div class="edu-item">
+                                        <div class="edu-dot"></div>
+                                        <div class="edu-content">
+                                            <span class="edu-date">ปวช.1 - ปวช.3</span>
+                                            <h4>วิทยาลัยเทคนิคเชียงใหม่</h4>
+                                            <p>ประกาศนียบัตรวิชาชีพ | สาขาช่างไฟฟ้ากำลัง</p>
+                                        </div>
+                                    </div>
+                                    <div class="edu-item">
+                                        <div class="edu-dot"></div>
+                                        <div class="edu-content">
+                                            <span class="edu-date">ม.1 - ม.3</span>
+                                            <h4>โรงเรียนปายวิทยาคาร</h4>
+                                            <p>มัธยมศึกษาตอนต้น</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
+                        <div class="info-item info-expandable" onclick="this.classList.toggle('expanded')">
+                            <div class="info-icon-wrapper icon-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-main">
                                 <span class="info-label">ที่อยู่</span>
                                 <span class="info-value">เชียงใหม่, ประเทศไทย</span>
                             </div>
+                            <i class="fas fa-chevron-down info-expand-icon"></i>
+                            <div class="info-details">
+                                <div class="detail-list">
+                                    <div class="detail-item">
+                                        <i class="fas fa-home"></i>
+                                        <span>ภูมิลำเนา: อำเภอปาย จังหวัดแม่ฮ่องสอน</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-city"></i>
+                                        <span>ที่พักปัจจุบัน: เชียงใหม่</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-car"></i>
+                                        <span>สามารถเดินทางได้สะดวก</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-briefcase"></i>
-                            <div>
+                        <div class="info-item info-expandable" onclick="this.classList.toggle('expanded')">
+                            <div class="info-icon-wrapper icon-work">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="info-main">
                                 <span class="info-label">สถานะ</span>
                                 <span class="info-value">นักศึกษาฝึกงาน</span>
+                            </div>
+                            <i class="fas fa-chevron-down info-expand-icon"></i>
+                            <div class="info-details">
+                                <div class="detail-list">
+                                    <div class="detail-item">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <span>นักศึกษาชั้นปีที่ 4</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-building"></i>
+                                        <span>ฝึกงาน: NT สำนักงานใหญ่ภาคเหนือ</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>พร้อมทำงานเต็มเวลาหลังจบการศึกษา</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-search"></i>
+                                        <span>กำลังหาโอกาสงานด้าน IT/โทรคมนาคม</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="about-stats">
-                    <div class="stat-card">
-                        <div class="stat-icon">
+                    <div class="stat-card stat-interactive" onclick="this.classList.toggle('active')">
+                        <div class="stat-icon icon-pwc">
                             <i class="fas fa-building"></i>
                         </div>
                         <h3>PWC Internship</h3>
                         <p>NT (TOT) ปาย</p>
+                        <div class="stat-badge">ปวช.</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
+                    <div class="stat-card stat-interactive" onclick="this.classList.toggle('active')">
+                        <div class="stat-icon icon-bachelor">
                             <i class="fas fa-laptop-code"></i>
                         </div>
                         <h3>Bachelor Internship</h3>
                         <p>NT สำนักงานใหญ่ภาคเหนือ</p>
+                        <div class="stat-badge">ปริญญาตรี</div>
                     </div>
                 </div>
             </div>
@@ -141,44 +226,71 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content timeline-expandable" onclick="this.classList.toggle('expanded')">
                         <div class="timeline-date">
                             <i class="fas fa-calendar"></i> ปัจจุบัน
                         </div>
-                        <h3>Bachelor Internship</h3>
+                        <h3>Bachelor Internship <i class="fas fa-chevron-down timeline-arrow"></i></h3>
                         <h4>บริษัท โทรคมนาคมแห่งชาติ จำกัด - NT สำนักงานใหญ่ภาคเหนือ</h4>
                         <p>ฝึกงานระดับปริญญาตรี เรียนรู้และปฏิบัติงานจริงในสายงาน IT</p>
-                        <a href="https://maps.app.goo.gl/QUEvTaEV66PCJDN87" target="_blank" class="location-link">
+                        <div class="timeline-details">
+                            <h5><i class="fas fa-tasks"></i> หน้าที่ที่ได้รับมอบหมาย</h5>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> จัดการงานเบื้องหลัง (Back Office)</li>
+                                <li><i class="fas fa-check-circle"></i> ทำเอกสารและจัดเก็บข้อมูล</li>
+                                <li><i class="fas fa-check-circle"></i> สนับสนุนงานด้าน IT</li>
+                            </ul>
+                        </div>
+                        <a href="https://maps.app.goo.gl/QUEvTaEV66PCJDN87" target="_blank" class="location-link"
+                            onclick="event.stopPropagation()">
                             <i class="fas fa-map-marker-alt"></i> ดูตำแหน่งที่ตั้ง
                         </a>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content timeline-expandable" onclick="this.classList.toggle('expanded')">
                         <div class="timeline-date">
                             <i class="fas fa-calendar"></i> ผ่านมาแล้ว
                         </div>
-                        <h3>PWC Internship</h3>
+                        <h3>PWC Internship <i class="fas fa-chevron-down timeline-arrow"></i></h3>
                         <h4>บริษัท โทรคมนาคมแห่งชาติ จำกัด(มหาชน) - NT (TOT) ปาย</h4>
                         <p>ฝึกงานระดับ ปวช. ได้รับประสบการณ์พื้นฐานในการทำงานจริง</p>
-                        <a href="https://maps.app.goo.gl/sa9WcERRpG4x5fWN8" target="_blank" class="location-link">
+                        <div class="timeline-details">
+                            <h5><i class="fas fa-tools"></i> หน้าที่ที่ได้รับมอบหมาย</h5>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> ทำงานร่วมกับช่างเทคนิค</li>
+                                <li><i class="fas fa-check-circle"></i> บริการลูกค้าที่ศูนย์บริการ</li>
+                                <li><i class="fas fa-check-circle"></i> ซ่อมบำรุงอุปกรณ์โทรคมนาคม</li>
+                                <li><i class="fas fa-check-circle"></i> ติดตั้งและแก้ไขปัญหาอินเทอร์เน็ต</li>
+                            </ul>
+                        </div>
+                        <a href="https://maps.app.goo.gl/sa9WcERRpG4x5fWN8" target="_blank" class="location-link"
+                            onclick="event.stopPropagation()">
                             <i class="fas fa-map-marker-alt"></i> ดูตำแหน่งที่ตั้ง
                         </a>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content timeline-expandable" onclick="this.classList.toggle('expanded')">
                         <div class="timeline-date">
                             <i class="fas fa-graduation-cap"></i> กำลังศึกษา
                         </div>
-                        <h3>การศึกษา</h3>
+                        <h3>การศึกษา <i class="fas fa-chevron-down timeline-arrow"></i></h3>
                         <h4>มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h4>
-                        <p><strong>คณะ:</strong> วิศวกรรมศาสตร์</p>
-                        <p><strong>สาขา:</strong> วิศวกรรมไฟฟ้า</p>
-                        <p><strong>สาขาวิชา:</strong> วศ.บ.วิศวกรรมไฟฟ้า-วิศวกรรมโทรคมนาคม</p>
-                        <a href="https://maps.app.goo.gl/Eiv1VPJgBrSAPVFG7" target="_blank" class="location-link">
+                        <p>คณะวิศวกรรมศาสตร์ สาขาวิศวกรรมไฟฟ้า</p>
+                        <div class="timeline-details">
+                            <h5><i class="fas fa-book"></i> รายละเอียดการศึกษา</h5>
+                            <ul>
+                                <li><i class="fas fa-university"></i> <strong>คณะ:</strong> วิศวกรรมศาสตร์</li>
+                                <li><i class="fas fa-bolt"></i> <strong>สาขา:</strong> วิศวกรรมไฟฟ้า</li>
+                                <li><i class="fas fa-broadcast-tower"></i> <strong>สาขาวิชา:</strong>
+                                    วศ.บ.วิศวกรรมไฟฟ้า-วิศวกรรมโทรคมนาคม</li>
+                            </ul>
+                        </div>
+                        <a href="https://maps.app.goo.gl/Eiv1VPJgBrSAPVFG7" target="_blank" class="location-link"
+                            onclick="event.stopPropagation()">
                             <i class="fas fa-map-marker-alt"></i> ดูตำแหน่งที่ตั้ง
                         </a>
                     </div>
@@ -197,68 +309,269 @@
                 <div class="skills-category">
                     <h3><i class="fas fa-code"></i> Hard Skills</h3>
                     <div class="skills-grid skills-grid-3">
-                        <div class="skill-card">
-                            <i class="fas fa-file-excel"></i>
-                            <span>Microsoft Office</span>
-                            <p class="skill-desc">Excel, Word</p>
+                        <div class="skill-card-flip" onclick="this.classList.toggle('flipped')">
+                            <div class="skill-card-inner">
+                                <div class="skill-card-front">
+                                    <div class="skill-icon-wrapper icon-office">
+                                        <i class="fab fa-microsoft"></i>
+                                    </div>
+                                    <span>Microsoft Office</span>
+                                    <p class="skill-desc">Excel, Word, PowerPoint</p>
+                                    <p class="click-hint"><i class="fas fa-hand-pointer"></i> คลิกเพื่อดูเพิ่ม</p>
+                                </div>
+                                <div class="skill-card-back">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>ความสามารถ</span>
+                                    <ul>
+                                        <li>สร้างเอกสาร Word</li>
+                                        <li>ใช้สูตร Excel</li>
+                                        <li>นำเสนองาน PowerPoint</li>
+                                        <li>จัดรูปแบบข้อมูล</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-card">
-                            <i class="fas fa-code"></i>
-                            <span>การเขียนโค้ด</span>
-                            <p class="skill-desc">Python, Java เบื้องต้น</p>
+                        <div class="skill-card-flip" onclick="this.classList.toggle('flipped')">
+                            <div class="skill-card-inner">
+                                <div class="skill-card-front">
+                                    <div class="skill-icon-wrapper icon-code">
+                                        <i class="fas fa-laptop-code"></i>
+                                    </div>
+                                    <span>การเขียนโค้ด</span>
+                                    <p class="skill-desc">Python, Java เบื้องต้น</p>
+                                    <p class="click-hint"><i class="fas fa-hand-pointer"></i> คลิกเพื่อดูเพิ่ม</p>
+                                </div>
+                                <div class="skill-card-back">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>ความสามารถ</span>
+                                    <ul>
+                                        <li>Python พื้นฐาน</li>
+                                        <li>Java เบื้องต้น</li>
+                                        <li>เขียนโปรแกรมอย่างง่าย</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-card">
-                            <i class="fas fa-palette"></i>
-                            <span>การออกแบบกราฟิก</span>
-                            <p class="skill-desc">Graphic Design</p>
+                        <div class="skill-card-flip" onclick="this.classList.toggle('flipped')">
+                            <div class="skill-card-inner">
+                                <div class="skill-card-front">
+                                    <div class="skill-icon-wrapper icon-design">
+                                        <i class="fas fa-paint-brush"></i>
+                                    </div>
+                                    <span>การออกแบบกราฟิก</span>
+                                    <p class="skill-desc">Graphic Design</p>
+                                    <p class="click-hint"><i class="fas fa-hand-pointer"></i> คลิกเพื่อดูเพิ่ม</p>
+                                </div>
+                                <div class="skill-card-back">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>ความสามารถ</span>
+                                    <ul>
+                                        <li>ออกแบบภาพกราฟิก</li>
+                                        <li>แก้ไขรูปภาพ</li>
+                                        <li>สร้างสื่อประชาสัมพันธ์</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-card">
-                            <i class="fas fa-robot"></i>
-                            <span>ทำงานร่วมกับ AI</span>
-                            <p class="skill-desc">AI Tools & Collaboration</p>
+                        <div class="skill-card-flip" onclick="this.classList.toggle('flipped')">
+                            <div class="skill-card-inner">
+                                <div class="skill-card-front">
+                                    <div class="skill-icon-wrapper icon-ai">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <span>ทำงานร่วมกับ AI</span>
+                                    <p class="skill-desc">AI Tools & Collaboration</p>
+                                    <p class="click-hint"><i class="fas fa-hand-pointer"></i> คลิกเพื่อดูเพิ่ม</p>
+                                </div>
+                                <div class="skill-card-back">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>ความสามารถ</span>
+                                    <ul>
+                                        <li>ใช้ ChatGPT</li>
+                                        <li>AI Image Generation</li>
+                                        <li>ประยุกต์ใช้ AI ในงาน</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="skills-category">
                     <h3><i class="fas fa-users"></i> Soft Skills</h3>
                     <div class="soft-skills-list">
-                        <div class="soft-skill-item">
-                            <div class="soft-skill-icon">
+                        <div class="soft-skill-item" onclick="this.classList.toggle('expanded')">
+                            <div class="soft-skill-icon icon-communicate">
                                 <i class="fas fa-comments"></i>
                             </div>
                             <div class="soft-skill-info">
-                                <h4>การสื่อสาร</h4>
+                                <h4>การสื่อสาร <i class="fas fa-chevron-down expand-icon"></i></h4>
                                 <p>สื่อสารได้อย่างมีประสิทธิภาพ</p>
+                                <div class="soft-skill-details">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> นำเสนอข้อมูลได้ชัดเจน</li>
+                                        <li><i class="fas fa-check"></i> รับฟังความคิดเห็นผู้อื่น</li>
+                                        <li><i class="fas fa-check"></i> สื่อสารทั้งภาษาไทยและอังกฤษ</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="soft-skill-item">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-people-carry"></i>
+                        <div class="soft-skill-item" onclick="this.classList.toggle('expanded')">
+                            <div class="soft-skill-icon icon-teamwork">
+                                <i class="fas fa-hands-helping"></i>
                             </div>
                             <div class="soft-skill-info">
-                                <h4>การทำงานเป็นทีม</h4>
+                                <h4>การทำงานเป็นทีม <i class="fas fa-chevron-down expand-icon"></i></h4>
                                 <p>ร่วมมือกับผู้อื่นได้ดี</p>
+                                <div class="soft-skill-details">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> ทำงานร่วมกับทีมได้อย่างราบรื่น</li>
+                                        <li><i class="fas fa-check"></i> ช่วยเหลือเพื่อนร่วมงาน</li>
+                                        <li><i class="fas fa-check"></i> ยอมรับความแตกต่าง</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="soft-skill-item">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-lightbulb"></i>
+                        <div class="soft-skill-item" onclick="this.classList.toggle('expanded')">
+                            <div class="soft-skill-icon icon-problem">
+                                <i class="fas fa-puzzle-piece"></i>
                             </div>
                             <div class="soft-skill-info">
-                                <h4>การแก้ปัญหา</h4>
+                                <h4>การแก้ปัญหา <i class="fas fa-chevron-down expand-icon"></i></h4>
                                 <p>คิดวิเคราะห์และแก้ไขปัญหา</p>
+                                <div class="soft-skill-details">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> วิเคราะห์ปัญหาอย่างเป็นระบบ</li>
+                                        <li><i class="fas fa-check"></i> หาทางออกที่เหมาะสม</li>
+                                        <li><i class="fas fa-check"></i> เรียนรู้จากข้อผิดพลาด</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="soft-skill-item">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-clock"></i>
+                        <div class="soft-skill-item" onclick="this.classList.toggle('expanded')">
+                            <div class="soft-skill-icon icon-time">
+                                <i class="fas fa-hourglass-half"></i>
                             </div>
                             <div class="soft-skill-info">
-                                <h4>การจัดการเวลา</h4>
+                                <h4>การจัดการเวลา <i class="fas fa-chevron-down expand-icon"></i></h4>
                                 <p>บริหารเวลาอย่างมีประสิทธิภาพ</p>
+                                <div class="soft-skill-details">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> จัดลำดับความสำคัญของงาน</li>
+                                        <li><i class="fas fa-check"></i> ส่งงานตรงเวลา</li>
+                                        <li><i class="fas fa-check"></i> วางแผนการทำงานล่วงหน้า</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Language Skills Section -->
+    <section id="languages" class="languages">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">04.</span> ความสามารถด้านภาษา
+            </h2>
+            <div class="languages-container">
+                <div class="language-card">
+                    <div class="language-icon icon-thai">
+                        <span>🇹🇭</span>
+                    </div>
+                    <div class="language-info">
+                        <h3>ภาษาไทย</h3>
+                        <p class="language-level">ดี</p>
+                        <div class="language-skills">
+                            <div class="lang-skill">
+                                <span>การพูด</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="lang-skill">
+                                <span>การอ่าน</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="lang-skill">
+                                <span>การเขียน</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <div class="language-icon icon-english">
+                        <span>🇬🇧</span>
+                    </div>
+                    <div class="language-info">
+                        <h3>ภาษาอังกฤษ</h3>
+                        <p class="language-level">พื้นฐาน</p>
+                        <div class="language-skills">
+                            <div class="lang-skill">
+                                <span>การพูด</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 35%"></div>
+                                </div>
+                            </div>
+                            <div class="lang-skill">
+                                <span>การอ่าน</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div class="lang-skill">
+                                <span>การเขียน</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 25%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="hobbies">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">05.</span> งานอดิเรก
+            </h2>
+            <div class="hobbies-container">
+                <div class="hobby-card" onclick="this.classList.toggle('active')">
+                    <div class="hobby-icon icon-gaming">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>เล่นเกม</h3>
+                    <p>ผ่อนคลายด้วยการเล่นเกม</p>
+                </div>
+                <div class="hobby-card" onclick="this.classList.toggle('active')">
+                    <div class="hobby-icon icon-sports">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>กีฬา</h3>
+                    <p>ออกกำลังกายเพื่อสุขภาพ</p>
+                </div>
+                <div class="hobby-card" onclick="this.classList.toggle('active')">
+                    <div class="hobby-icon icon-cooking">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>ทำอาหาร</h3>
+                    <p>ชอบทดลองทำอาหารใหม่ๆ</p>
+                </div>
+                <div class="hobby-card" onclick="this.classList.toggle('active')">
+                    <div class="hobby-icon icon-dog">
+                        <i class="fas fa-dog"></i>
+                    </div>
+                    <h3>เลี้ยงหมา</h3>
+                    <p>รักสัตว์เลี้ยง</p>
                 </div>
             </div>
         </div>
@@ -268,7 +581,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">
-                <span class="title-number">04.</span> ติดต่อ
+                <span class="title-number">06.</span> ติดต่อ
             </h2>
             <div class="contact-container">
                 <div class="contact-info">

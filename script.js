@@ -2,14 +2,40 @@
 // MAIN JAVASCRIPT - Resume Website
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize all functions
     initParticles();
     initNavbar();
     initScrollReveal();
     initSmoothScroll();
     initContactForm();
+    initTheme();
 });
+
+// ============================================
+// THEME TOGGLE (Dark/Light Mode)
+// ============================================
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        updateThemeIcon(true);
+    }
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const isLight = body.classList.toggle('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    updateThemeIcon(isLight);
+}
+
+function updateThemeIcon(isLight) {
+    const themeIcon = document.getElementById('theme-icon');
+    if (themeIcon) {
+        themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+    }
+}
 
 // ============================================
 // PARTICLES BACKGROUND
@@ -39,7 +65,7 @@ function initNavbar() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Scroll effect
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
@@ -49,14 +75,14 @@ function initNavbar() {
     });
 
     // Mobile toggle
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', function () {
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
     // Close menu on link click
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
         });
@@ -89,10 +115,10 @@ function initNavbar() {
 // ============================================
 function initScrollReveal() {
     const revealElements = document.querySelectorAll('.about-content, .timeline-item, .skills-category, .contact-container');
-    
+
     revealElements.forEach(el => el.classList.add('reveal'));
 
-    const revealOnScroll = function() {
+    const revealOnScroll = function () {
         revealElements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
             const elementVisible = 150;
@@ -112,7 +138,7 @@ function initScrollReveal() {
 // ============================================
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -134,10 +160,10 @@ function initSmoothScroll() {
 // ============================================
 function initContactForm() {
     const form = document.getElementById('contact-form');
-    
-    form.addEventListener('submit', function(e) {
+
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
@@ -147,7 +173,7 @@ function initContactForm() {
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-check"></i> ส่งข้อความสำเร็จ!';
         btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-        
+
         setTimeout(() => {
             btn.innerHTML = originalText;
             btn.style.background = '';
@@ -164,7 +190,7 @@ function initContactForm() {
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.textContent = '';
-    
+
     function type() {
         if (i < text.length) {
             element.textContent += text.charAt(i);
