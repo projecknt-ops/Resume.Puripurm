@@ -373,6 +373,24 @@ ul {
     color: var(--gray-500);
 }
 
+.profile-image {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--warm-400);
+    box-shadow: 0 0 50px rgba(241, 149, 53, 0.3);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
 .scroll-indicator {
     position: absolute;
     bottom: 40px;
@@ -630,6 +648,26 @@ ul {
 .timeline-content p {
     color: var(--text-muted);
     font-size: 0.95rem;
+}
+
+.location-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: rgba(241, 149, 53, 0.1);
+    border: 1px solid var(--warm-400);
+    border-radius: var(--radius-sm);
+    color: var(--warm-400);
+    font-size: 0.85rem;
+    transition: var(--transition-medium);
+}
+
+.location-link:hover {
+    background: var(--warm-400);
+    color: #fff;
+    transform: translateX(5px);
 }
 
 .skills {
@@ -1136,8 +1174,32 @@ ul {
         font-size: 4rem;
     }
 
+    .profile-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .image-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
     .timeline-content {
         padding: 20px;
+    }
+
+    .timeline-content h4 {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .location-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .skills-grid-3 {
+        grid-template-columns: 1fr;
     }
 
     .contact-form-container {
@@ -1152,5 +1214,13 @@ ul {
     .soft-skill-item {
         flex-direction: column;
         text-align: center;
+    }
+
+    .stat-card h3 {
+        font-size: 0.95rem;
+    }
+
+    .stat-card p {
+        font-size: 0.8rem;
     }
 }
