@@ -1166,12 +1166,34 @@ body.light-mode .gradient-orb {
     box-shadow: 0 0 40px rgba(241, 149, 53, 0.4);
 }
 
-/* Stat Card Expandable */
 .stat-expandable h3 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    margin-bottom: 5px;
+}
+
+.btn-stat-portfolio {
+    display: inline-block;
+    padding: 5px 20px;
+    background: transparent;
+    border: 2px solid var(--warm-400);
+    color: var(--warm-400);
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+    font-family: var(--font-thai);
+}
+
+.btn-stat-portfolio:hover {
+    background: var(--warm-400);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(241, 149, 53, 0.4);
+    transform: translateY(-2px);
 }
 
 .stat-arrow {
