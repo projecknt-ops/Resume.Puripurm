@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="detail-item">
                                         <i class="fas fa-car"></i>
-                                        <span>สามารถเดินทางได้สะดวก</span>
+                                        <span>มีใบขับขี่รถยนต์/มอเตอร์ไซค์ สามารถขับรถออกต่างจังหวัดได้</span>
                                     </div>
                                 </div>
                             </div>
@@ -254,6 +254,33 @@
                                     <div class="detail-item">
                                         <i class="fas fa-search"></i>
                                         <span>กำลังหาโอกาสงานด้าน IT/โทรคมนาคม</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item info-expandable" onclick="this.classList.toggle('expanded')">
+                            <div class="info-icon-wrapper icon-objective">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="info-main">
+                                <span class="info-label">เป้าหมายในอาชีพ</span>
+                                <span class="info-value">พร้อมเรียนรู้สิ่งใหม่ๆ</span>
+                            </div>
+                            <i class="fas fa-chevron-down info-expand-icon"></i>
+                            <div class="info-details">
+                                <div class="detail-list">
+                                    <div class="detail-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <span>เป้าหมายในระยะ 1-2 ปีข้างหน้า:</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>แม้ยังไม่มีผลงานที่โดดเด่นมากนัก
+                                            แต่มีความมุ่งมั่นและพร้อมเปิดรับการเรียนรู้เทคโนโลยีใหม่ๆ อยู่เสมอ</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-seedling"></i>
+                                        <span>ต้องการสะสมประสบการณ์เพื่อพัฒนาตนเองให้เป็นมืออาชีพ</span>
                                     </div>
                                 </div>
                             </div>
@@ -453,16 +480,20 @@
                                     </div>
                                     <span>การออกแบบกราฟิก</span>
                                     <p class="skill-desc">Graphic Design</p>
-                                    <p class="click-hint"><i class="fas fa-hand-pointer"></i> คลิกเพื่อดูเพิ่ม</p>
+                                    <p class="click-hint"><i class="fas fa-hand-pointer"></i> คลิกเพื่อดูรายละเอียด</p>
                                 </div>
                                 <div class="skill-card-back">
                                     <i class="fas fa-check-circle"></i>
                                     <span>ความสามารถ</span>
                                     <ul>
-                                        <li>ออกแบบภาพกราฟิก</li>
-                                        <li>แก้ไขรูปภาพ</li>
+                                        <li>ออกแบบภาพกราฟิก (Canva)</li>
+                                        <li>แก้ไขรูปภาพ (Adobe Photoshop)</li>
                                         <li>สร้างสื่อประชาสัมพันธ์</li>
                                     </ul>
+                                    <button class="btn btn-view-portfolio"
+                                        onclick="event.stopPropagation(); window.openHobbyModal(['นำเสนอ PA ปี2568.jpg', 'ผลงาน.png', 'ผลงาน2.png'])">
+                                        <i class="fas fa-images"></i> ดูผลงาน
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -790,59 +821,26 @@
         </div>
     </footer>
 
-    <!-- Theme Customizer Panel -->
-    <div class="theme-customizer" id="theme-customizer">
-        <button class="customizer-toggle" onclick="toggleCustomizer()">
-            <i class="fas fa-palette"></i>
-        </button>
-        <h3 class="customizer-title"><i class="fas fa-sliders-h"></i> ปรับแต่งธีม</h3>
-
-        <div class="customizer-section">
-            <label>โหมด</label>
-            <div class="theme-mode-toggle">
-                <button class="mode-btn active" data-mode="dark" onclick="setThemeMode('dark')">
-                    <i class="fas fa-moon"></i> มืด
-                </button>
-                <button class="mode-btn" data-mode="light" onclick="setThemeMode('light')">
-                    <i class="fas fa-sun"></i> สว่าง
-                </button>
-            </div>
-        </div>
-
-        <div class="customizer-section">
-            <label>สีหลัก</label>
-            <div class="color-options">
-                <button class="color-btn active" data-color="orange" style="background: #F19535;"
-                    onclick="setAccentColor('orange')"></button>
-                <button class="color-btn" data-color="blue" style="background: #3B82F6;"
-                    onclick="setAccentColor('blue')"></button>
-                <button class="color-btn" data-color="green" style="background: #10B981;"
-                    onclick="setAccentColor('green')"></button>
-                <button class="color-btn" data-color="purple" style="background: #8B5CF6;"
-                    onclick="setAccentColor('purple')"></button>
-                <button class="color-btn" data-color="pink" style="background: #EC4899;"
-                    onclick="setAccentColor('pink')"></button>
-            </div>
-        </div>
-
-        <div class="customizer-section">
-            <label>ขนาดตัวอักษร</label>
-            <div class="font-size-toggle">
-                <button class="size-btn" onclick="changeFontSize('small')">A-</button>
-                <button class="size-btn active" onclick="changeFontSize('normal')">A</button>
-                <button class="size-btn" onclick="changeFontSize('large')">A+</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Image Modal for Hobbies -->
     <div id="image-modal" class="image-modal">
         <span class="close-modal">&times;</span>
+
+        <!-- Navigation Buttons -->
+        <button class="modal-nav prev" onclick="window.changeModalMedia(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="modal-nav next" onclick="window.changeModalMedia(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
         <div class="modal-content-wrapper">
             <div id="modal-images-container" class="modal-images-container">
-                <!-- Images will be inserted here dynamically -->
+                <!-- Media will be inserted here dynamically -->
             </div>
             <div id="caption"></div>
+            <!-- Media Counter -->
+            <div id="media-counter" class="media-counter"></div>
         </div>
     </div>
 

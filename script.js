@@ -30,21 +30,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ============================================
-// THEME TOGGLE (Dark/Light Mode)
+// THEME & MODE FUNCTIONALITY
 // ============================================
 function initTheme() {
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
         updateThemeIcon(true);
     }
 }
 
-function toggleTheme() {
+window.setThemeMode = function (mode) {
     const body = document.body;
-    const isLight = body.classList.toggle('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    updateThemeIcon(isLight);
+    if (mode === 'light') {
+        body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+    }
+    updateThemeIcon(mode === 'light');
 }
 
 function updateThemeIcon(isLight) {
@@ -52,6 +57,11 @@ function updateThemeIcon(isLight) {
     if (themeIcon) {
         themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
     }
+}
+
+window.toggleTheme = function () {
+    const isLight = document.body.classList.contains('light-mode');
+    setThemeMode(isLight ? 'dark' : 'light');
 }
 
 // ============================================
@@ -594,79 +604,6 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ============================================
-// THEME CUSTOMIZER
-// ============================================
-function toggleCustomizer() {
-    const customizer = document.getElementById('theme-customizer');
-    customizer.classList.toggle('open');
-}
-
-function setThemeMode(mode) {
-    const body = document.body;
-    const modeBtns = document.querySelectorAll('.mode-btn');
-
-    modeBtns.forEach(btn => btn.classList.remove('active'));
-    document.querySelector(`[data-mode="${mode}"]`)?.classList.add('active');
-
-    if (mode === 'light') {
-        body.classList.add('light-mode');
-    } else {
-        body.classList.remove('light-mode');
-    }
-
-    localStorage.setItem('themeMode', mode);
-}
-
-function setAccentColor(color) {
-    const body = document.body;
-    const colorBtns = document.querySelectorAll('.color-btn');
-
-    // Remove all accent classes
-    body.classList.remove('accent-blue', 'accent-green', 'accent-purple', 'accent-pink');
-
-    colorBtns.forEach(btn => btn.classList.remove('active'));
-    document.querySelector(`[data-color="${color}"]`)?.classList.add('active');
-
-    if (color !== 'orange') {
-        body.classList.add(`accent-${color}`);
-    }
-
-    localStorage.setItem('accentColor', color);
-}
-
-function changeFontSize(size) {
-    const body = document.body;
-    const sizeBtns = document.querySelectorAll('.size-btn');
-
-    body.classList.remove('font-small', 'font-large');
-
-    sizeBtns.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-
-    if (size === 'small') {
-        body.classList.add('font-small');
-    } else if (size === 'large') {
-        body.classList.add('font-large');
-    }
-
-    localStorage.setItem('fontSize', size);
-}
-
-// Load saved preferences
-function loadThemePreferences() {
-    const savedMode = localStorage.getItem('themeMode');
-    const savedColor = localStorage.getItem('accentColor');
-    const savedSize = localStorage.getItem('fontSize');
-
-    if (savedMode) setThemeMode(savedMode);
-    if (savedColor) setAccentColor(savedColor);
-    if (savedSize) changeFontSize(savedSize);
-}
-
-// Initialize on load
-document.addEventListener('DOMContentLoaded', loadThemePreferences);
-
-// ============================================
 // DOWNLOAD CV BUTTON
 // ============================================
 document.addEventListener('DOMContentLoaded', function () {
@@ -725,67 +662,93 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ============================================
-// HOBBY IMAGE MODAL
+// HOBBY IMAGE MODAL (Slideshow Version)
 // ============================================
-window.openHobbyModal = function (images) {
-    // Ensure images is an array
-    if (typeof images === 'string') images = [images];
+let currentModalMedia = [];
+let currentMediaIndex = 0;
 
-    console.log("Opening hobby modal with images:", images);
+window.openHobbyModal = function (mediaList) {
+    if (typeof mediaList === 'string') mediaList = [mediaList];
+
+    currentModalMedia = mediaList;
+    currentMediaIndex = 0;
+
+    console.log("Opening modal slideshow with:", currentModalMedia);
+
     const modal = document.getElementById('image-modal');
     const container = document.getElementById('modal-images-container');
-    const captionText = document.getElementById('caption');
+    const prevBtn = document.querySelector('.modal-nav.prev');
+    const nextBtn = document.querySelector('.modal-nav.next');
 
-    if (!modal || !container) {
-        console.error("Modal elements not found!");
-        return;
-    }
+    if (!modal || !container) return;
 
-    // Clear previous images
+    // Clear and build content
     container.innerHTML = '';
-
-    // Add new media objects
-    images.forEach(src => {
+    currentModalMedia.forEach((src, index) => {
         const isVideo = src.toLowerCase().endsWith('.mp4');
-        let element;
+        let element = isVideo ? document.createElement('video') : document.createElement('img');
 
-        if (isVideo) {
-            element = document.createElement('video');
-            element.src = src;
-            element.controls = true;
-            element.autoplay = false;
-        } else {
-            element = document.createElement('img');
-            element.src = src;
-        }
-
+        element.src = src;
         element.className = 'modal-content';
+        if (isVideo) {
+            element.controls = true;
+        }
         container.appendChild(element);
     });
 
-    // Set caption based on content
-    let caption = "";
-    const lowerImages = images.map(i => i.toLowerCase());
-    if (lowerImages.some(i => i.includes('dog'))) {
-        caption = "เหล่าน้องหมาสุดที่รักของผม 🐶";
-    } else if (images.length > 1) {
-        caption = "กิจกรรมและไลฟ์สไตล์การออกกำลังกาย";
-    } else if (images[0] === 'ball.jpg') {
-        caption = "กิจกรรมกีฬาและออกกำลังกาย";
-    } else if (images[0] === 'pai.jpg') {
-        caption = "กิจกรรมออกกำลังกายและการพักผ่อน";
+    // Toggle navigation buttons visibility
+    if (currentModalMedia.length > 1) {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+    } else {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
     }
 
+    updateModalDisplay();
+
     modal.style.display = "block";
-
-    // Force reflow
-    modal.offsetHeight;
-
+    modal.offsetHeight; // Force reflow
     modal.classList.add('active');
-    captionText.innerHTML = caption;
-
-    // Disable scrolling when modal is open
     document.body.style.overflow = 'hidden';
+}
+
+function updateModalDisplay() {
+    const images = document.querySelectorAll('#modal-images-container .modal-content');
+    const captionText = document.getElementById('caption');
+    const counter = document.getElementById('media-counter');
+
+    // Hide all, show active
+    images.forEach((img, idx) => {
+        img.classList.remove('active');
+        if (img.tagName === 'VIDEO') img.pause(); // Pause videos on switch
+        if (idx === currentMediaIndex) {
+            img.classList.add('active');
+        }
+    });
+
+    // Set caption
+    const currentSrc = currentModalMedia[currentMediaIndex].toLowerCase();
+    let caption = "กิจกรรมและผลงานของผม";
+
+    if (currentSrc.includes('dog')) caption = "เหล่าน้องหมาสุดที่รักของผม 🐶";
+    else if (currentSrc.includes('ผลงาน') || currentSrc.includes('นำเสนอ')) caption = "ผลงานการออกแบบกราฟิก 🎨";
+    else if (currentSrc.includes('ball.jpg') || currentSrc.includes('pai.jpg')) caption = "กิจกรรมออกกำลังกายและการพักผ่อน ⚽🏔️";
+
+    captionText.innerHTML = caption;
+    counter.innerHTML = `${currentMediaIndex + 1} / ${currentModalMedia.length}`;
+}
+
+window.changeModalMedia = function (n) {
+    currentMediaIndex += n;
+
+    if (currentMediaIndex >= currentModalMedia.length) {
+        currentMediaIndex = 0;
+    } else if (currentMediaIndex < 0) {
+        currentMediaIndex = currentModalMedia.length - 1;
+    }
+
+    updateModalDisplay();
 }
 
 window.closeHobbyModal = function () {
@@ -796,6 +759,9 @@ window.closeHobbyModal = function () {
     setTimeout(() => {
         modal.style.display = "none";
         document.body.style.overflow = 'auto';
+        // Stop any playing video
+        const videos = document.querySelectorAll('#modal-images-container video');
+        videos.forEach(v => v.pause());
     }, 300);
 }
 
