@@ -98,10 +98,6 @@
                 <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="สลับโหมด">
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </button>
-                <a href="resume.html" target="_blank" class="btn-download" title="ดู Resume">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Resume</span>
-                </a>
             </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span></span>
@@ -125,6 +121,11 @@
                     </a>
                     <a href="#about" class="btn btn-secondary">
                         <i class="fas fa-user"></i> รู้จักผม
+                    </a>
+                    <a href="resume.html" target="_blank" class="btn btn-download" id="download-cv-btn">
+                        <i class="fas fa-download"></i>
+                        <span>ดาวน์โหลด CV</span>
+                        <div class="btn-download-progress"></div>
                     </a>
                 </div>
             </div>
@@ -674,14 +675,8 @@
                 <span class="title-number">06.</span> งานอดิเรก
             </h2>
             <div class="hobbies-container">
-                <div class="hobby-card" onclick="this.classList.toggle('active')">
-                    <div class="hobby-icon icon-gaming">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>เล่นเกม</h3>
-                    <p>ผ่อนคลายด้วยการเล่นเกม</p>
-                </div>
-                <div class="hobby-card" onclick="this.classList.toggle('active')">
+
+                <div class="hobby-card" onclick="window.openHobbyModal(['ball.jpg', 'pai.jpg'])">
                     <div class="hobby-icon icon-sports">
                         <i class="fas fa-futbol"></i>
                     </div>
@@ -695,7 +690,7 @@
                     <h3>ทำอาหาร</h3>
                     <p>ชอบทดลองทำอาหารใหม่ๆ</p>
                 </div>
-                <div class="hobby-card" onclick="this.classList.toggle('active')">
+                <div class="hobby-card" onclick="window.openHobbyModal(['Dog.jpg', 'Dog1.jpg', 'Dog.mp4'])">
                     <div class="hobby-icon icon-dog">
                         <i class="fas fa-dog"></i>
                     </div>
@@ -745,6 +740,8 @@
                             </div>
                         </a>
                     </div>
+
+
                 </div>
                 <div class="contact-form-container">
                     <form class="contact-form" id="contact-form">
@@ -792,6 +789,62 @@
             </div>
         </div>
     </footer>
+
+    <!-- Theme Customizer Panel -->
+    <div class="theme-customizer" id="theme-customizer">
+        <button class="customizer-toggle" onclick="toggleCustomizer()">
+            <i class="fas fa-palette"></i>
+        </button>
+        <h3 class="customizer-title"><i class="fas fa-sliders-h"></i> ปรับแต่งธีม</h3>
+
+        <div class="customizer-section">
+            <label>โหมด</label>
+            <div class="theme-mode-toggle">
+                <button class="mode-btn active" data-mode="dark" onclick="setThemeMode('dark')">
+                    <i class="fas fa-moon"></i> มืด
+                </button>
+                <button class="mode-btn" data-mode="light" onclick="setThemeMode('light')">
+                    <i class="fas fa-sun"></i> สว่าง
+                </button>
+            </div>
+        </div>
+
+        <div class="customizer-section">
+            <label>สีหลัก</label>
+            <div class="color-options">
+                <button class="color-btn active" data-color="orange" style="background: #F19535;"
+                    onclick="setAccentColor('orange')"></button>
+                <button class="color-btn" data-color="blue" style="background: #3B82F6;"
+                    onclick="setAccentColor('blue')"></button>
+                <button class="color-btn" data-color="green" style="background: #10B981;"
+                    onclick="setAccentColor('green')"></button>
+                <button class="color-btn" data-color="purple" style="background: #8B5CF6;"
+                    onclick="setAccentColor('purple')"></button>
+                <button class="color-btn" data-color="pink" style="background: #EC4899;"
+                    onclick="setAccentColor('pink')"></button>
+            </div>
+        </div>
+
+        <div class="customizer-section">
+            <label>ขนาดตัวอักษร</label>
+            <div class="font-size-toggle">
+                <button class="size-btn" onclick="changeFontSize('small')">A-</button>
+                <button class="size-btn active" onclick="changeFontSize('normal')">A</button>
+                <button class="size-btn" onclick="changeFontSize('large')">A+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal for Hobbies -->
+    <div id="image-modal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content-wrapper">
+            <div id="modal-images-container" class="modal-images-container">
+                <!-- Images will be inserted here dynamically -->
+            </div>
+            <div id="caption"></div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

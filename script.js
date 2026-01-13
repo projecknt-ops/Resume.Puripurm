@@ -592,3 +592,228 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ============================================
+// THEME CUSTOMIZER
+// ============================================
+function toggleCustomizer() {
+    const customizer = document.getElementById('theme-customizer');
+    customizer.classList.toggle('open');
+}
+
+function setThemeMode(mode) {
+    const body = document.body;
+    const modeBtns = document.querySelectorAll('.mode-btn');
+
+    modeBtns.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-mode="${mode}"]`)?.classList.add('active');
+
+    if (mode === 'light') {
+        body.classList.add('light-mode');
+    } else {
+        body.classList.remove('light-mode');
+    }
+
+    localStorage.setItem('themeMode', mode);
+}
+
+function setAccentColor(color) {
+    const body = document.body;
+    const colorBtns = document.querySelectorAll('.color-btn');
+
+    // Remove all accent classes
+    body.classList.remove('accent-blue', 'accent-green', 'accent-purple', 'accent-pink');
+
+    colorBtns.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-color="${color}"]`)?.classList.add('active');
+
+    if (color !== 'orange') {
+        body.classList.add(`accent-${color}`);
+    }
+
+    localStorage.setItem('accentColor', color);
+}
+
+function changeFontSize(size) {
+    const body = document.body;
+    const sizeBtns = document.querySelectorAll('.size-btn');
+
+    body.classList.remove('font-small', 'font-large');
+
+    sizeBtns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (size === 'small') {
+        body.classList.add('font-small');
+    } else if (size === 'large') {
+        body.classList.add('font-large');
+    }
+
+    localStorage.setItem('fontSize', size);
+}
+
+// Load saved preferences
+function loadThemePreferences() {
+    const savedMode = localStorage.getItem('themeMode');
+    const savedColor = localStorage.getItem('accentColor');
+    const savedSize = localStorage.getItem('fontSize');
+
+    if (savedMode) setThemeMode(savedMode);
+    if (savedColor) setAccentColor(savedColor);
+    if (savedSize) changeFontSize(savedSize);
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', loadThemePreferences);
+
+// ============================================
+// DOWNLOAD CV BUTTON
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+    const downloadBtn = document.getElementById('download-cv-btn');
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function (e) {
+            // Add downloading class for animation
+            this.classList.add('downloading');
+
+            // Remove animation after delay
+            setTimeout(() => {
+                this.classList.remove('downloading');
+            }, 1000);
+
+            // Allow default behavior to open resume.html
+        });
+    }
+});
+
+// ============================================
+// ANIMATED SKILL BARS OBSERVER
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+    const skillBars = document.querySelectorAll('.skill-bar-animated');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    skillBars.forEach(bar => observer.observe(bar));
+
+    // Also animate existing skill-progress bars
+    const existingBars = document.querySelectorAll('.skill-progress');
+    const barObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Get the target width from inline style
+                const targetWidth = entry.target.style.width || '100%';
+                // Reset width to 0 then animate to target
+                entry.target.style.width = '0';
+                entry.target.style.transition = 'width 1.5s ease';
+                setTimeout(() => {
+                    entry.target.style.width = targetWidth;
+                }, 50);
+                barObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    existingBars.forEach(bar => barObserver.observe(bar));
+});
+
+// ============================================
+// HOBBY IMAGE MODAL
+// ============================================
+window.openHobbyModal = function (images) {
+    // Ensure images is an array
+    if (typeof images === 'string') images = [images];
+
+    console.log("Opening hobby modal with images:", images);
+    const modal = document.getElementById('image-modal');
+    const container = document.getElementById('modal-images-container');
+    const captionText = document.getElementById('caption');
+
+    if (!modal || !container) {
+        console.error("Modal elements not found!");
+        return;
+    }
+
+    // Clear previous images
+    container.innerHTML = '';
+
+    // Add new media objects
+    images.forEach(src => {
+        const isVideo = src.toLowerCase().endsWith('.mp4');
+        let element;
+
+        if (isVideo) {
+            element = document.createElement('video');
+            element.src = src;
+            element.controls = true;
+            element.autoplay = false;
+        } else {
+            element = document.createElement('img');
+            element.src = src;
+        }
+
+        element.className = 'modal-content';
+        container.appendChild(element);
+    });
+
+    // Set caption based on content
+    let caption = "";
+    const lowerImages = images.map(i => i.toLowerCase());
+    if (lowerImages.some(i => i.includes('dog'))) {
+        caption = "เหล่าน้องหมาสุดที่รักของผม 🐶";
+    } else if (images.length > 1) {
+        caption = "กิจกรรมและไลฟ์สไตล์การออกกำลังกาย";
+    } else if (images[0] === 'ball.jpg') {
+        caption = "กิจกรรมกีฬาและออกกำลังกาย";
+    } else if (images[0] === 'pai.jpg') {
+        caption = "กิจกรรมออกกำลังกายและการพักผ่อน";
+    }
+
+    modal.style.display = "block";
+
+    // Force reflow
+    modal.offsetHeight;
+
+    modal.classList.add('active');
+    captionText.innerHTML = caption;
+
+    // Disable scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+window.closeHobbyModal = function () {
+    const modal = document.getElementById('image-modal');
+    if (!modal) return;
+
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = "none";
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+// Close modal event listeners
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('image-modal');
+    const closeBtn = document.querySelector('.close-modal');
+
+    if (closeBtn) {
+        closeBtn.onclick = closeHobbyModal;
+    }
+
+    if (modal) {
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeHobbyModal();
+            }
+        }
+    }
+});
+
