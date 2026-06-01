@@ -642,17 +642,20 @@ body.light-mode .gradient-orb {
 .hero-greeting {
     font-size: 1.1rem;
     color: var(--accent);
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+.hero-name-fade {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.4s;
 }
 
 .hero-name {
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 10px;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards 0.4s;
+    margin-bottom: 8px;
 }
 
 .hero-name span {
